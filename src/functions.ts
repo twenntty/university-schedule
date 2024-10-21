@@ -2,10 +2,12 @@ import { Professor, Lesson, ScheduleConflict } from "./types";
 import { professors, classrooms, schedule } from "./data";
 import { courses } from './data';
 
+// Додавання професора до списку
 export function addProfessor(professor: Professor): void {
   professors.push(professor);
 }
 
+// Додавання заняття до розкладу
 export function addLesson(lesson: Lesson): boolean {
   const conflict = validateLesson(lesson);
   if (conflict) {
@@ -16,6 +18,7 @@ export function addLesson(lesson: Lesson): boolean {
   return true;
 }
 
+// Знаходження доступних аудиторій на певний час
 export function findAvailableClassrooms(timeSlot: string, dayOfWeek: string): string[] {
   const occupiedClassrooms = schedule
     .filter((lesson) => lesson.timeSlot === timeSlot && lesson.dayOfWeek === dayOfWeek)
